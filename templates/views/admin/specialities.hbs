@@ -1,0 +1,212 @@
+{{>header}}
+
+{{>nav}}
+        
+        <div class="page-wrapper">
+            <div class="content container-fluid">
+
+                <div class="page-header">
+                    <div class="row align-items-center">
+                        <div class="col-md-12 d-flex justify-content-end">
+                            <div class="doc-badge me-3">Specialities <span class="ms-1">{{Departmentlist.length}}</span></div>
+                            <a href="#" data-bs-toggle="modal" data-bs-target="#addModal"
+                                class="btn btn-primary btn-add"><i class="feather-plus-square me-1"></i> Add New</a>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="card">
+                            <div class="card-header border-bottom-0">
+                                <div class="row align-items-center">
+                                    <div class="col">
+                                        <h5 class="card-title">Specialities</h5>
+                                    </div>
+                                    <div class="col-auto d-flex flex-wrap">
+                                        <div class="form-custom me-2">
+                                            <div id="tableSearch" class="dataTables_wrapper"></div>
+                                        </div>
+                                        <div class="SortBy">
+                                            <div class="selectBoxes order-by">
+                                                <p class="mb-0"><img src="/assets/img/icon/sort.png" class="me-2"
+                                                        alt="icon"> Order by </p>
+                                                <span class="down-icon"><i class="feather-chevron-down"></i></span>
+                                            </div>
+                                            <div id="checkBox">
+                                                <form action="specialities.html">
+                                                    <p class="lab-title">Order By </p>
+                                                    <label class="custom_radio w-100">
+                                                        <input type="radio" name="order">
+                                                        <span class="checkmark"></span> ID
+                                                    </label>
+                                                    <label class="custom_radio w-100 mb-4">
+                                                        <input type="radio" name="order">
+                                                        <span class="checkmark"></span> Date Modified
+                                                    </label>
+                                                    <p class="lab-title">Sort By</p>
+                                                    <label class="custom_radio w-100">
+                                                        <input type="radio" name="sort">
+                                                        <span class="checkmark"></span> Ascending
+                                                    </label>
+                                                    <label class="custom_radio w-100 mb-4">
+                                                        <input type="radio" name="sort">
+                                                        <span class="checkmark"></span> Descending
+                                                    </label>
+                                                    <button type="submit" class="btn w-100 btn-primary">Apply</button>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card-body p-0">
+                                <div class="table-responsive">
+                                    <table class="datatable table table-borderless hover-table" id="data-table">
+                                        <thead class="thead-light">
+                                            <tr>
+                                                <th>SID</th>
+                                                <th>Product</th>
+                                                <th></th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+
+                                            {{#each Departmentlist}}
+                                                {{!-- single specialities --}}
+                                                <tr>
+                                                    <td>#{{this.Dept_ID}}</td>
+                                                    <td>
+                                                        <h2 class="table-avatar">
+                                                            <a href="#" class="spl-img"><img
+                                                                    src="{{this.Photo}}" class="img-fluid"
+                                                                    alt="User Image"></a>
+                                                            <a href="#"><span>{{this.name}}</span></a>
+                                                        </h2>
+                                                    </td>
+                                                    <td class="text-end">
+                                                        <div class="actions">
+                                                            <a class="text-black" href="#" data-bs-toggle="modal"
+                                                                data-bs-target="#editModal">
+                                                                <i class="feather-edit-3 me-1"></i> Edit
+                                                            </a>
+                                                            <a class="text-danger" href="#" data-bs-toggle="modal"
+                                                                data-bs-target="#deleteModal">
+                                                                <i class="feather-trash-2 me-1"></i> Delete
+                                                            </a>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                           {{/each}}
+                                            
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="tablepagination" class="dataTables_wrapper"></div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+
+        <div class="modal fade contentmodal" id="addModal" tabindex="-1" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content doctor-profile">
+                    <div class="modal-header">
+                        <h3 class="mb-0">Add Speciality</h3>
+                        <button type="button" class="close-btn" data-bs-dismiss="modal" aria-label="Close"><i
+                                class="feather-x-circle"></i></button>
+                    </div>
+                    <div class="modal-body">
+                        <form action="specialities.html">
+                            <div class="add-wrap">
+                                <div class="form-group form-focus">
+                                    <input type="text" class="form-control floating">
+                                    <label class="focus-label">Speciality Name<span class="text-danger">*</span></label>
+                                </div>
+                                <div class="change-photo-btn">
+                                    <div><i class="feather-upload"></i>
+                                        <p>Upload File</p>
+                                    </div>
+                                    <input type="file" class="upload">
+                                </div>
+                                <p class="text-success">Successfully specialityimage.jpg uploaded <a href="#"
+                                        class="text-danger"><i class="feather-x"></i></a></p>
+                                <div class="submit-section">
+                                    <button type="submit" class="btn btn-primary btn-save">Save Changes</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="modal fade contentmodal" id="editModal" tabindex="-1" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content doctor-profile">
+                    <div class="modal-header">
+                        <h3 class="mb-0">Edit Speciality</h3>
+                        <button type="button" class="close-btn" data-bs-dismiss="modal" aria-label="Close"><i
+                                class="feather-x-circle"></i></button>
+                    </div>
+                    <div class="modal-body">
+                        <form action="specialities.html">
+                            <div class="add-wrap">
+                                <div class="form-group form-focus">
+                                    <input type="text" class="form-control floating" value="Cardiology">
+                                    <label class="focus-label">Speciality Name<span class="text-danger">*</span></label>
+                                </div>
+                                <div class="change-photo-btn">
+                                    <div><i class="feather-upload"></i>
+                                        <p>Upload File</p>
+                                    </div>
+                                    <input type="file" class="upload">
+                                    <span class="file-upload-text"></span>
+                                </div>
+                                <p class="file-name text-success">specialityimage.jpg <a href="#" class="text-danger"><i
+                                            class="feather-x"></i></a></p>
+                                <div class="submit-section">
+                                    <button type="submit" class="btn btn-primary btn-save">Save Changes</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="modal fade contentmodal" id="deleteModal" tabindex="-1" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content doctor-profile">
+                    <div class="modal-header border-bottom-0 justify-content-end">
+                        <button type="button" class="close-btn" data-bs-dismiss="modal" aria-label="Close"><i
+                                class="feather-x-circle"></i></button>
+                    </div>
+                    <div class="modal-body">
+                        <form action="specialities.html">
+                            <div class="delete-wrap text-center">
+                                <div class="del-icon"><i class="feather-x-circle"></i></div>
+                                <h2>Sure you Want to delete</h2>
+                                <p>“Cardiolody”</p>
+                                <div class="submit-section">
+                                    <button type="submit" class="btn btn-success me-2">Yes</button>
+                                    <a href="#" class="btn btn-danger" data-bs-dismiss="modal">No</a>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+
+    {{>footer}}

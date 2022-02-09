@@ -1,0 +1,627 @@
+{{>header}}
+
+{{>nav}}
+
+    <div class="page-wrapper" style="min-height: 486px;">
+        <div class="content container-fluid">
+
+            <div class="page-header">
+                <div class="row align-items-center">
+                    <div class="col-md-12 d-flex justify-content-end">
+                        <div class="doc-badge me-3">Total Ratings <span class="ms-1">48</span></div>
+                        <div class="SortBy">
+                            <div class="selectBoxes order-by">
+                                <p class="mb-0"><img src="/assets/img/icon/sort.png" class="me-2" alt="icon"> Order by
+                                </p>
+                                <span class="down-icon"><i class="feather-chevron-down"></i></span>
+                            </div>
+                            <div id="checkBox">
+                                <form action="ratings.html">
+                                    <p class="lab-title">Sort By</p>
+                                    <label class="custom_radio w-100">
+                                        <input type="radio" name="sort">
+                                        <span class="checkmark"></span> Ascending
+                                    </label>
+                                    <label class="custom_radio w-100 mb-4">
+                                        <input type="radio" name="sort">
+                                        <span class="checkmark"></span> Descending
+                                    </label>
+                                    <button type="submit" class="btn w-100 btn-primary">Apply</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="card">
+                        <div class="card-header border-bottom-0">
+                            <div class="row align-items-center">
+                                <div class="col">
+                                    <h5 class="card-title">Ratings</h5>
+                                </div>
+                                <div class="col-auto custom-list d-flex">
+                                    <div class="form-custom me-2">
+                                        <div id="tableSearch" class="dataTables_wrapper">
+                                            <div id="data-table_filter" class="dataTables_filter"><label> <input
+                                                        type="search" class="form-control form-control-sm"
+                                                        placeholder="Search..." aria-controls="data-table"></label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="multipleSelection">
+                                        <div class="selectBox">
+                                            <p class="mb-0"><i class="feather-filter me-1"></i> Filter </p>
+                                            <span class="down-icon"><i class="feather-chevron-down"></i></span>
+                                        </div>
+                                        <div id="checkBoxes">
+                                            <form action="ratings.html">
+                                                <p class="lab-title">Ratings</p>
+                                                <label class="custom_check w-100">
+                                                    <input type="checkbox" name="year" checked="">
+                                                    <span class="checkmark"></span> 5
+                                                </label>
+                                                <label class="custom_check w-100">
+                                                    <input type="checkbox" name="year">
+                                                    <span class="checkmark"></span> 4
+                                                </label>
+                                                <label class="custom_check w-100">
+                                                    <input type="checkbox" name="year">
+                                                    <span class="checkmark"></span> 3
+                                                </label>
+                                                <label class="custom_check w-100">
+                                                    <input type="checkbox" name="year">
+                                                    <span class="checkmark"></span> 2
+                                                </label>
+                                                <label class="custom_check w-100">
+                                                    <input type="checkbox" name="year">
+                                                    <span class="checkmark"></span> 1
+                                                </label>
+                                                <button type="submit" class="btn w-100 btn-primary">Apply</button>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-body p-0">
+                            <div class="table-responsive">
+                                <div id="data-table_wrapper" class="dataTables_wrapper dt-bootstrap4 no-footer">
+                                    <div class="row">
+                                        <div class="col-sm-12 col-md-6"></div>
+                                        <div class="col-sm-12 col-md-6"></div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-sm-12">
+                                            <table
+                                                class="datatable table table-borderless hover-table dataTable no-footer"
+                                                id="data-table" role="grid">
+                                                <thead class="thead-light">
+                                                    <tr role="row">
+                                                        <th class="sorting_asc" tabindex="0" aria-controls="data-table"
+                                                            rowspan="1" colspan="1" aria-sort="ascending"
+                                                            aria-label="ID: activate to sort column descending"
+                                                            style="width: 74.25px;">ID</th>
+                                                        <th class="sorting" tabindex="0" aria-controls="data-table"
+                                                            rowspan="1" colspan="1"
+                                                            aria-label="Patient: activate to sort column ascending"
+                                                            style="width: 291.094px;">Patient</th>
+                                                        <th class="sorting" tabindex="0" aria-controls="data-table"
+                                                            rowspan="1" colspan="1"
+                                                            aria-label="Doctor: activate to sort column ascending"
+                                                            style="width: 296.031px;">Doctor</th>
+                                                        <th class="sorting" tabindex="0" aria-controls="data-table"
+                                                            rowspan="1" colspan="1"
+                                                            aria-label="Consultation Date: activate to sort column ascending"
+                                                            style="width: 224.75px;">Consultation Date</th>
+                                                        <th class="desc-info sorting" tabindex="0"
+                                                            aria-controls="data-table" rowspan="1" colspan="1"
+                                                            aria-label="Ratings: activate to sort column ascending"
+                                                            style="width: 182.844px;">Ratings</th>
+                                                        <th class="sorting" tabindex="0" aria-controls="data-table"
+                                                            rowspan="1" colspan="1"
+                                                            aria-label="Description: activate to sort column ascending"
+                                                            style="width: 182px;">Description</th>
+                                                        <th class="sorting" tabindex="0" aria-controls="data-table"
+                                                            rowspan="1" colspan="1"
+                                                            aria-label=": activate to sort column ascending"
+                                                            style="width: 117.031px;"></th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+
+
+
+
+
+
+
+
+                                                    <tr role="row" class="odd">
+                                                        <td class="sorting_1"><a href="#" class="text-black"
+                                                                data-bs-toggle="modal"
+                                                                data-bs-target="#Ratings">#4546</a></td>
+                                                        <td>
+                                                            <h2 class="table-avatar">
+                                                                <a href="profile.html"><img class="avatar avatar-img"
+                                                                        src="/assets/img/profiles/avatar-07.jpg"
+                                                                        alt="User Image"></a>
+                                                                <a href="profile.html"><span class="user-name">Bess
+                                                                        Twishes</span></a>
+                                                            </h2>
+                                                        </td>
+                                                        <td>
+                                                            <h2 class="table-avatar">
+                                                                <a class="avatar-pos" href="profile.html"><img
+                                                                        class="avatar avatar-img"
+                                                                        src="/assets/img/profiles/avatar-02.jpg"
+                                                                        alt="User Image"></a>
+                                                                <a href="profile.html" class="user-name"><span
+                                                                        class="text-muted">Dr. Rayan</span> <span
+                                                                        class="tab-subtext">Gyanoclogist</span></a>
+                                                            </h2>
+                                                        </td>
+                                                        <td><span class="user-name">26 November 2022 </span><span
+                                                                class="d-block">12/20/2022</span></td>
+                                                        <td>
+                                                            <div class="ratings">
+                                                                <i class="far fa-star filled"></i>
+                                                                <i class="far fa-star filled"></i>
+                                                                <i class="far fa-star filled"></i>
+                                                                <i class="far fa-star filled"></i>
+                                                                <i class="far fa-star"></i>
+                                                            </div>
+                                                        </td>
+                                                        <td class="desc-info">Lorem Ipsum is simply dummy text of the
+                                                            printing and typesetting industry.</td>
+                                                        <td class="text-end">
+                                                            <div class="actions">
+                                                                <a class="text-danger" href="#" data-bs-toggle="modal"
+                                                                    data-bs-target="#deleteModal">
+                                                                    <i class="feather-trash-2"></i> Delete
+                                                                </a>
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                    <tr role="row" class="even">
+                                                        <td class="sorting_1"><a href="#" class="text-black"
+                                                                data-bs-toggle="modal"
+                                                                data-bs-target="#Ratings">#4546</a></td>
+                                                        <td>
+                                                            <h2 class="table-avatar">
+                                                                <a href="profile.html"><img class="avatar avatar-img"
+                                                                        src="/assets/img/profiles/avatar-02.jpg"
+                                                                        alt="User Image"></a>
+                                                                <a href="profile.html"><span class="user-name">Abdul
+                                                                        Aziz Lazis</span></a>
+                                                            </h2>
+                                                        </td>
+                                                        <td>
+                                                            <h2 class="table-avatar">
+                                                                <a class="avatar-pos" href="profile.html"><img
+                                                                        class="avatar avatar-img"
+                                                                        src="/assets/img/profiles/avatar-05.jpg"
+                                                                        alt="User Image"></a>
+                                                                <a href="profile.html" class="user-name"><span
+                                                                        class="text-muted">Dr. Lester</span> <span
+                                                                        class="tab-subtext">Orthopaedics</span></a>
+                                                            </h2>
+                                                        </td>
+                                                        <td><span class="user-name">26 November 2022 </span><span
+                                                                class="d-block">12/20/2022</span></td>
+                                                        <td>
+                                                            <div class="ratings">
+                                                                <i class="far fa-star filled"></i>
+                                                                <i class="far fa-star filled"></i>
+                                                                <i class="far fa-star filled"></i>
+                                                                <i class="far fa-star filled"></i>
+                                                                <i class="far fa-star"></i>
+                                                            </div>
+                                                        </td>
+                                                        <td class="desc-info">Lorem Ipsum is simply dummy text of the
+                                                            printing and typesetting industry.</td>
+                                                        <td class="text-end">
+                                                            <div class="actions">
+                                                                <a class="text-danger" href="#" data-bs-toggle="modal"
+                                                                    data-bs-target="#deleteModal">
+                                                                    <i class="feather-trash-2"></i> Delete
+                                                                </a>
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                    <tr role="row" class="odd">
+                                                        <td class="sorting_1"><a href="#" class="text-black"
+                                                                data-bs-toggle="modal"
+                                                                data-bs-target="#Ratings">#4546</a></td>
+                                                        <td>
+                                                            <h2 class="table-avatar">
+                                                                <a href="profile.html"><img class="avatar avatar-img"
+                                                                        src="/assets/img/profiles/avatar-05.jpg"
+                                                                        alt="User Image"></a>
+                                                                <a href="profile.html"><span class="user-name">Alex
+                                                                        Siauw</span></a>
+                                                            </h2>
+                                                        </td>
+                                                        <td>
+                                                            <h2 class="table-avatar">
+                                                                <a class="empty-user" href="profile.html"><i
+                                                                        class="feather-user"></i> </a>
+                                                                <a href="#" class="user-name"><span
+                                                                        class="text-muted">Dr. Clint</span> <span
+                                                                        class="tab-subtext">Neurology</span></a>
+                                                            </h2>
+                                                        </td>
+                                                        <td><span class="user-name">26 November 2022 </span><span
+                                                                class="d-block">12/20/2022</span></td>
+                                                        <td>
+                                                            <div class="ratings">
+                                                                <i class="far fa-star filled"></i>
+                                                                <i class="far fa-star filled"></i>
+                                                                <i class="far fa-star filled"></i>
+                                                                <i class="far fa-star filled"></i>
+                                                                <i class="far fa-star"></i>
+                                                            </div>
+                                                        </td>
+                                                        <td class="desc-info">Lorem Ipsum is simply dummy text of the
+                                                            printing and typesetting industry.</td>
+                                                        <td class="text-end">
+                                                            <div class="actions">
+                                                                <a class="text-danger" href="#" data-bs-toggle="modal"
+                                                                    data-bs-target="#deleteModal">
+                                                                    <i class="feather-trash-2"></i> Delete
+                                                                </a>
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                    <tr role="row" class="even">
+                                                        <td class="sorting_1"><a href="#" class="text-black"
+                                                                data-bs-toggle="modal"
+                                                                data-bs-target="#Ratings">#4546</a></td>
+                                                        <td>
+                                                            <h2 class="table-avatar">
+                                                                <a href="profile.html"><img class="avatar avatar-img"
+                                                                        src="/assets/img/profiles/avatar-04.jpg"
+                                                                        alt="User Image"></a>
+                                                                <a href="profile.html"><span class="user-name">Dr. Sofia
+                                                                        Brient</span></a>
+                                                            </h2>
+                                                        </td>
+                                                        <td>
+                                                            <h2 class="table-avatar">
+                                                                <a class="avatar-pos" href="profile.html"><img
+                                                                        class="avatar avatar-img"
+                                                                        src="/assets/img/profiles/avatar-05.jpg"
+                                                                        alt="User Image"></a>
+                                                                <a href="profile.html" class="user-name"><span
+                                                                        class="text-muted">Dr. Lester</span> <span
+                                                                        class="tab-subtext">Orthopaedics</span></a>
+                                                            </h2>
+                                                        </td>
+                                                        <td><span class="user-name">26 November 2022 </span><span
+                                                                class="d-block">12/20/2022</span></td>
+                                                        <td>
+                                                            <div class="ratings">
+                                                                <i class="far fa-star filled"></i>
+                                                                <i class="far fa-star filled"></i>
+                                                                <i class="far fa-star filled"></i>
+                                                                <i class="far fa-star filled"></i>
+                                                                <i class="far fa-star"></i>
+                                                            </div>
+                                                        </td>
+                                                        <td class="desc-info">Lorem Ipsum is simply dummy text of the
+                                                            printing and typesetting industry.</td>
+                                                        <td class="text-end">
+                                                            <div class="actions">
+                                                                <a class="text-danger" href="#" data-bs-toggle="modal"
+                                                                    data-bs-target="#deleteModal">
+                                                                    <i class="feather-trash-2"></i> Delete
+                                                                </a>
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                    <tr role="row" class="odd">
+                                                        <td class="sorting_1"><a href="#" class="text-black"
+                                                                data-bs-toggle="modal"
+                                                                data-bs-target="#Ratings">#4546</a></td>
+                                                        <td>
+                                                            <h2 class="table-avatar">
+                                                                <a href="profile.html"><img class="avatar avatar-img"
+                                                                        src="/assets/img/profiles/avatar-11.jpg"
+                                                                        alt="User Image"></a>
+                                                                <a href="profile.html"><span
+                                                                        class="user-name">Deborah</span></a>
+                                                            </h2>
+                                                        </td>
+                                                        <td>
+                                                            <h2 class="table-avatar">
+                                                                <a class="empty-user" href="profile.html"><i
+                                                                        class="feather-user"></i> </a>
+                                                                <a href="#" class="user-name"><span
+                                                                        class="text-muted">Dr. Clint</span> <span
+                                                                        class="tab-subtext">Neurology</span></a>
+                                                            </h2>
+                                                        </td>
+                                                        <td><span class="user-name">26 November 2022 </span><span
+                                                                class="d-block">12/20/2022</span></td>
+                                                        <td>
+                                                            <div class="ratings">
+                                                                <i class="far fa-star filled"></i>
+                                                                <i class="far fa-star filled"></i>
+                                                                <i class="far fa-star filled"></i>
+                                                                <i class="far fa-star filled"></i>
+                                                                <i class="far fa-star"></i>
+                                                            </div>
+                                                        </td>
+                                                        <td class="desc-info">Lorem Ipsum is simply dummy text of the
+                                                            printing and typesetting industry.</td>
+                                                        <td class="text-end">
+                                                            <div class="actions">
+                                                                <a class="text-danger" href="#" data-bs-toggle="modal"
+                                                                    data-bs-target="#deleteModal">
+                                                                    <i class="feather-trash-2"></i> Delete
+                                                                </a>
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                    <tr role="row" class="even">
+                                                        <td class="sorting_1"><a href="#" class="text-black"
+                                                                data-bs-toggle="modal"
+                                                                data-bs-target="#Ratings">#4546</a></td>
+                                                        <td>
+                                                            <h2 class="table-avatar">
+                                                                <a href="profile.html"><img class="avatar avatar-img"
+                                                                        src="/assets/img/profiles/avatar-03.jpg"
+                                                                        alt="User Image"></a>
+                                                                <a href="profile.html"><span
+                                                                        class="user-name">Sofia</span></a>
+                                                            </h2>
+                                                        </td>
+                                                        <td>
+                                                            <h2 class="table-avatar">
+                                                                <a class="avatar-pos" href="profile.html"><img
+                                                                        class="avatar avatar-img"
+                                                                        src="/assets/img/profiles/avatar-10.jpg"
+                                                                        alt="User Image"></a>
+                                                                <a href="profile.html" class="user-name"><span
+                                                                        class="text-muted">Dr. Richard</span> <span
+                                                                        class="tab-subtext">Orthopaedics</span></a>
+                                                            </h2>
+                                                        </td>
+                                                        <td><span class="user-name">26 November 2022 </span><span
+                                                                class="d-block">12/20/2022</span></td>
+                                                        <td>
+                                                            <div class="ratings">
+                                                                <i class="far fa-star filled"></i>
+                                                                <i class="far fa-star filled"></i>
+                                                                <i class="far fa-star filled"></i>
+                                                                <i class="far fa-star filled"></i>
+                                                                <i class="far fa-star"></i>
+                                                            </div>
+                                                        </td>
+                                                        <td class="desc-info">Lorem Ipsum is simply dummy text of the
+                                                            printing and typesetting industry.</td>
+                                                        <td class="text-end">
+                                                            <div class="actions">
+                                                                <a class="text-danger" href="#" data-bs-toggle="modal"
+                                                                    data-bs-target="#deleteModal">
+                                                                    <i class="feather-trash-2"></i> Delete
+                                                                </a>
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                    <tr role="row" class="odd">
+                                                        <td class="sorting_1"><a href="#" class="text-black"
+                                                                data-bs-toggle="modal"
+                                                                data-bs-target="#Ratings">#4546</a></td>
+                                                        <td>
+                                                            <h2 class="table-avatar">
+                                                                <a href="profile.html"><img class="avatar avatar-img"
+                                                                        src="/assets/img/profiles/avatar-13.jpg"
+                                                                        alt="User Image"></a>
+                                                                <a href="profile.html"><span
+                                                                        class="user-name">Paul</span></a>
+                                                            </h2>
+                                                        </td>
+                                                        <td>
+                                                            <h2 class="table-avatar">
+                                                                <a class="empty-user" href="profile.html"><i
+                                                                        class="feather-user"></i> </a>
+                                                                <a href="#" class="user-name"><span
+                                                                        class="text-muted">Dr. Clint</span> <span
+                                                                        class="tab-subtext">Neurology</span></a>
+                                                            </h2>
+                                                        </td>
+                                                        <td><span class="user-name">26 November 2022 </span><span
+                                                                class="d-block">12/20/2022</span></td>
+                                                        <td>
+                                                            <div class="ratings">
+                                                                <i class="far fa-star filled"></i>
+                                                                <i class="far fa-star filled"></i>
+                                                                <i class="far fa-star filled"></i>
+                                                                <i class="far fa-star filled"></i>
+                                                                <i class="far fa-star"></i>
+                                                            </div>
+                                                        </td>
+                                                        <td class="desc-info">Lorem Ipsum is simply dummy text of the
+                                                            printing and typesetting industry.</td>
+                                                        <td class="text-end">
+                                                            <div class="actions">
+                                                                <a class="text-danger" href="#" data-bs-toggle="modal"
+                                                                    data-bs-target="#deleteModal">
+                                                                    <i class="feather-trash-2"></i> Delete
+                                                                </a>
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                    <tr role="row" class="even">
+                                                        <td class="sorting_1"><a href="#" class="text-black"
+                                                                data-bs-toggle="modal"
+                                                                data-bs-target="#Ratings">#8774</a></td>
+                                                        <td>
+                                                            <h2 class="table-avatar">
+                                                                <a href="profile.html"><img class="avatar avatar-img"
+                                                                        src="/assets/img/profiles/avatar-12.jpg"
+                                                                        alt="User Image"></a>
+                                                                <a href="profile.html"><span class="user-name">Bess
+                                                                        Twishes</span></a>
+                                                            </h2>
+                                                        </td>
+                                                        <td>
+                                                            <h2 class="table-avatar">
+                                                                <a class="avatar-pos" href="profile.html"><img
+                                                                        class="avatar avatar-img"
+                                                                        src="/assets/img/profiles/avatar-05.jpg"
+                                                                        alt="User Image"></a>
+                                                                <a href="profile.html" class="user-name"><span
+                                                                        class="text-muted">Dr. Monroe</span> <span
+                                                                        class="tab-subtext">Hair Specialities</span></a>
+                                                            </h2>
+                                                        </td>
+                                                        <td><span class="user-name">26 November 2022 </span><span
+                                                                class="d-block">12/20/2022</span></td>
+                                                        <td>
+                                                            <div class="ratings">
+                                                                <i class="far fa-star filled"></i>
+                                                                <i class="far fa-star filled"></i>
+                                                                <i class="far fa-star filled"></i>
+                                                                <i class="far fa-star filled"></i>
+                                                                <i class="far fa-star"></i>
+                                                            </div>
+                                                        </td>
+                                                        <td class="desc-info">Lorem Ipsum is simply dummy text of the
+                                                            printing and typesetting industry.</td>
+                                                        <td class="text-end">
+                                                            <div class="actions">
+                                                                <a class="text-danger" href="#" data-bs-toggle="modal"
+                                                                    data-bs-target="#deleteModal">
+                                                                    <i class="feather-trash-2"></i> Delete
+                                                                </a>
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-sm-12 col-md-5"></div>
+                                        <div class="col-sm-12 col-md-7"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="tablepagination" class="dataTables_wrapper">
+                        <div class="dataTables_paginate paging_simple_numbers" id="data-table_paginate">
+                            <ul class="pagination">
+                                <li class="paginate_button page-item previous disabled" id="data-table_previous"><a
+                                        href="#" aria-controls="data-table" data-dt-idx="0" tabindex="0"
+                                        class="page-link"><i class="fas fa-chevron-left me-2"></i> Previous</a></li>
+                                <li class="paginate_button page-item active"><a href="#" aria-controls="data-table"
+                                        data-dt-idx="1" tabindex="0" class="page-link">1</a></li>
+                                <li class="paginate_button page-item next disabled" id="data-table_next"><a href="#"
+                                        aria-controls="data-table" data-dt-idx="2" tabindex="0" class="page-link">Next
+                                        <i class="fas fa-chevron-right ms-2"></i></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+
+    <div class="modal fade contentmodal" id="Ratings" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content doctor-profile">
+                <div class="modal-header justify-content-center border-bottom-0">
+                    <div>
+                        <h4 class="modal-title">Rating Details</h4>
+                        <button type="button" class="close-btn pos-top" data-bs-dismiss="modal" aria-label="Close"><i
+                                class="feather-x-circle"></i></button>
+                    </div>
+                </div>
+                <div class="modal-body">
+                    <div class="rating-wrapper mb-2">
+                        <h5>Consultation ID</h5>
+                        <p>#454445</p>
+                        <h5>Reviews</h5>
+                        <div class="ratings mb-3">
+                            <i class="far fa-star filled"></i>
+                            <i class="far fa-star filled"></i>
+                            <i class="far fa-star filled"></i>
+                            <i class="far fa-star filled"></i>
+                            <i class="far fa-star"></i>
+                        </div>
+                        <h5>Description</h5>
+                        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has
+                            been the industry's standard dummy text ever since the 1500s, when an unknown printer took a
+                            galley of type and scrambled it to make a type specimen book. Lorem Ipsum is simply dummy
+                            text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard
+                            dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled
+                            it to make a type specimen book.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="modal fade contentmodal" id="deleteModal" tabindex="-1" style="display: none;" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content doctor-profile">
+                <div class="modal-header border-bottom-0 justify-content-end">
+                    <button type="button" class="close-btn" data-bs-dismiss="modal" aria-label="Close"><i
+                            class="feather-x-circle"></i></button>
+                </div>
+                <div class="modal-body">
+                    <form action="ratings.html">
+                        <div class="delete-wrap text-center">
+                            <div class="del-icon"><i class="feather-x-circle"></i></div>
+                            <h2>Sure you Want to delete</h2>
+                            <p>“Rating”</p>
+                            <div class="submit-section">
+                                <button type="submit" class="btn btn-success me-2">Yes</button>
+                                <a href="#" class="btn btn-danger" data-bs-dismiss="modal">No</a>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+<div class="modal fade contentmodal" id="deleteModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content doctor-profile">
+            <div class="modal-header border-bottom-0 justify-content-end">
+                <button type="button" class="close-btn" data-bs-dismiss="modal" aria-label="Close"><i
+                        class="feather-x-circle"></i></button>
+            </div>
+            <div class="modal-body">
+                <div class="delete-wrap text-center">
+                    <form action="patient-list.html">
+                        <div class="del-icon"><i class="feather-x-circle"></i></div>
+                        <h2>Sure you Want to delete</h2>
+                        <p>“Patient”</p>
+                        <div class="submit-section">
+                            <button type="submit" class="btn btn-success me-2">Yes</button>
+                            <a href="#" class="btn btn-danger" data-bs-dismiss="modal">No</a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+</div>
+
+{{>footer}}
