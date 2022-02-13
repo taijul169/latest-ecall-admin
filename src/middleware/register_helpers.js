@@ -7,7 +7,20 @@ hbs.registerHelper("todayAppoinment",(data)=>{
 
     
   })
-
+// accpet/reject/pending
+hbs.registerHelper("statusDisplayAdmin",(status)=>{
+    console.log(status)
+  
+    if(status == true){
+      return new handlebars.SafeString(`<a class="btn btn-success px-5"><i
+      class="fa fa-check-circle" aria-hidden="true"></i>Verified</a>`)
+    }
+    else{
+      return new handlebars.SafeString(`<a  class="btn btn-warning px-5"><i class="fa fa-times" aria-hidden="true"></i>Blocked</a>`)
+    }
+  
+  
+  })
 
 // accpet/reject/pending
 hbs.registerHelper("statusDisplay",(status)=>{

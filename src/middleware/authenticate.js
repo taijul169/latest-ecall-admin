@@ -9,18 +9,9 @@ const auth = async (req, res, next) =>{
     console.log('i am inside authenticate')
     try {
         // console.log("auth is working");
-        const token = req.cookies.jwtoken;
-        // var response =  await (fetch(`http://192.168.0.121:9010/api/userauth/${token}`, 
-        // { 
-        //     method: 'GET',  
-        // }));
-        // if(response.status == 401){
-        //     res.redirect('/login')
-        // }
-        // console.log("response:",response.headers)
-
-
-    fetch(`http://192.168.0.121:9010/api/userauth/${token}`)
+        const token = req.cookies.jwtokenadmin;
+       
+    fetch(`http://192.168.0.121:9010/api/admin/userauth/${token}`)
     .then(res => res.json())
     .then(singleDocData =>{
          console.log(singleDocData)
@@ -30,32 +21,27 @@ const auth = async (req, res, next) =>{
                 intro:'Created!',
                 message:'Login Please!!'
             }
-            res.redirect("/login")  
+            res.redirect("/admin/login") 
         }
         else{
             for(var i=0;i< singleDocData.userData.length;i++){
-                singleDocData.userData[i].Photo = `${root_url}${singleDocData.userData[i].Photo}`
+                singleDocData.userData[i].Photo = `${root_url}${singleDocData.userData[i].PhotoPath}`
             }
             req.userData = singleDocData.userData;
-           
             return next()
+
         }
        
-       
-        // res.render("doctor-profile",{singleDocData})
+      
     });
     
     
  
-    } catch (error) {
+    } catch (error){
+        res.render('admin/login')
         console.log(error)
-        res.status(401).render("login")
     }
 }
-
-
-
-
 
 
 module.exports =  auth;

@@ -6007,3 +6007,12 @@ div#data-table_paginate span a {
     margin: 5px;
     border-radius: 2px;
 }
+
+.admin.profile-img {
+    width: 300px;
+}
+
+.crnt_status.d-flex  i {
+    color: #fff;
+    font-size: 22px;
+}

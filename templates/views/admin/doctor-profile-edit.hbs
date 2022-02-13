@@ -1,0 +1,848 @@
+{{>header}}
+
+{{>nav}}
+
+
+
+
+<div class="page-wrapper">
+	<div class="content container-fluid">
+
+		
+       <div class="alert {{message.type}}" id="successmessage" role="alert">
+		  {{message.message}}
+		</div>
+
+
+		<div class="row">
+			<div class="col-sm-12">
+				<div class="card">
+					<div class="card-header">
+						<div class="row align-items-center">
+							<div class="col">
+								<h5 class="card-title">Doctors</h5>
+							</div>
+							<div class="col-auto d-flex flex-wrap">
+								<div class="form-custom me-2">
+									<div id="tableSearch" class="dataTables_wrapper">
+										<div class="crnt_status d-flex justify-content-between">
+											 {{statusDisplayAdmin singleDocData.personalInfo.[0].IsVerified}}
+											<div class="btn-group pl-5">
+												<button type="button" class="btn btn-outline-info dropdown-toggle"
+													data-bs-toggle="dropdown" aria-expanded="false">
+													Action
+												</button>
+												<ul class="dropdown-menu feather-filter me-1">
+													<li><a class="dropdown-item" href="/admin/verifystatusupdate/{{singleDocData.personalInfo.[0].DocNurID}}/True">Verify</a></li>
+													<li><a class="dropdown-item" href="/admin/verifystatusupdate/{{singleDocData.personalInfo.[0].DocNurID}}/False">Block</a></li>
+													
+												
+												</ul>
+											</div>
+										</div>
+									</div>
+								</div>
+								
+							</div>
+						</div>
+					</div>
+					<div class="card-body p-0">
+						<div class="col-md-12 col-lg-12 col-xl-12">
+
+
+							
+							{{!-- <div class="alert {{message.type}}" role="alert">
+
+							</div> --}}
+
+
+							<form id="myForm">
+								<div class="card">
+									<div class="card-body">
+										<h4 class="card-title">Basic Information</h4>
+										<div class="row form-row">
+											<div class="col-md-7 ">
+												<div class="form-group">
+													<div class="change-avatar">
+														<div class=" admin profile-img">
+															<img src="{{singleDocData.personalInfo.[0].Photo}}"
+																onerror="this.onerror=null; this.src='/assets/img/default.jpg'"
+																id="output" alt="User Image">
+
+														</div>
+														{{!-- <div class="upload-img d-none">
+															<div class="change-photo-btn">
+																<span><i class="fa fa-upload"></i> Upload Photo</span>
+																<input name="Photo" type="file" class="upload"
+																	accept="image/*">
+															</div>
+															<small class="form-text text-muted">Allowed JPG, GIF or PNG.
+																Max
+																size of 2MB</small>
+														</div> --}}
+														<input type="file" id="userPhoto" onchange="loadFile(event)"
+															name="Photo" class="form-control" accept="image/*" />
+														{{!-- image preview --}}
+														<script>
+															var loadFile = function (event) {
+																var reader = new FileReader();
+																reader.onload = function () {
+																	var output = document.getElementById('output');
+																	output.src = reader.result;
+																};
+																reader.readAsDataURL(event.target.files[0]);
+															};
+														</script>
+													</div>
+												</div>
+											</div>
+											<div class="col-md-6">
+												<div class="form-group">
+													<label>Username <span class="text-danger">*</span></label>
+													<input name="userName" id="userName" type="text"
+														value="{{singleDocData.personalInfo.[0].userName}}"
+														class="form-control">
+												</div>
+											</div>
+											<div class="col-md-6">
+												<div class="form-group">
+													<label>Email <span class="text-danger">*</span></label>
+													<input type="email" class="form-control"
+														value="{{singleDocData.personalInfo.[0].email}}">
+												</div>
+											</div>
+											<div class="col-md-6">
+												<div class="form-group">
+													<label>Registration Number <span
+															class="text-danger">*</span></label>
+													<input type="number" id="RegistrationNo" name="RegistrationNo"
+														value="{{singleDocData.personalInfo.[0].RegistrationNo}}"
+														class="form-control">
+												</div>
+											</div>
+											<div class="col-md-6">
+												<div class="form-group">
+													<label>First Name <span class="text-danger">*</span></label>
+													<input type="text" id="FirstName"
+														value="{{singleDocData.personalInfo.[0].FirstName}}"
+														name="FirstName" class="form-control">
+												</div>
+											</div>
+											<div class="col-md-6">
+												<div class="form-group">
+													<label>Last Name <span class="text-danger">*</span></label>
+													<input type="text" id="LastName"
+														value="{{singleDocData.personalInfo.[0].LastName}}"
+														name="LastName" class="form-control">
+												</div>
+											</div>
+											<div class="col-md-6">
+												<div class="form-group">
+													<label>Phone Number</label>
+													<input name="PhoneNumber" id="PhoneNumber" readonly
+														value="{{singleDocData.personalInfo.[0].PhoneNumber}}"
+														type="text" class="form-control">
+												</div>
+											</div>
+											<div class="col-md-6">
+												<div class="form-group">
+													<label>Gender</label>
+													<select name="Gender" id="Gender" class="form-select form-control">
+
+														<option value="{{singleDocData.personalInfo.[0].Gender}}">
+															{{singleDocData.personalInfo.[0].Gender}}</option>
+														<option>Male</option>
+														<option>Female</option>
+													</select>
+												</div>
+											</div>
+											<div class="col-md-6">
+												<div class="form-group mb-0">
+													<label>Date of Birth</label>
+													<input value="{{singleDocData.personalInfo.[0].DateOfBirth}}"
+														id="DateOfBirth" name="DateOfBirth" type="date"
+														class="form-control">
+												</div>
+											</div>
+											<div class="col-md-6">
+												<div class="form-group">
+													<label>Blood Group</label>
+													<select name="BloodGroup" id="BloodGroup"
+														class="form-select form-control">
+														<option value="{{singleDocData.personalInfo.[0].BloodGroup}}">
+															{{singleDocData.personalInfo.[0].BloodGroup}}</option>
+														<option value="o+">o+</option>
+														<option value="o-">o-</option>
+														<option value="A+">A+</option>
+														<option value="A-">A-</option>
+														<option value="AB+">AB+</option>
+														<option value="AB-">AB-</option>
+													</select>
+												</div>
+											</div>
+											<div class="col-md-6">
+												<div class="form-group">
+													<label>NID</label>
+													<input name="NID" id="NID"
+														value="{{singleDocData.personalInfo.[0].NID}}" type="text"
+														class="form-control">
+												</div>
+											</div>
+											<div class="col-md-6">
+												<div class="form-group">
+													<label>Address</label>
+													<textarea name="Address" id="Address"
+														class="form-control">{{singleDocData.personalInfo.[0].PrimaryAddress}}</textarea>
+
+												</div>
+											</div>
+											<div class="col-md-6">
+												<div class="form-group">
+													<label>Password</label>
+													<input name="Password" id="Password"
+														value="{{singleDocData.personalInfo.[0].Password}}"
+														type="password" class="form-control">
+												</div>
+											</div>
+
+											<div class="card">
+												<div class="card-body">
+													<h4 class="card-title">About Me</h4>
+													<div class="form-group mb-0">
+														<label>Biography</label>
+														<textarea id="about" name="about" class="form-control"
+															rows="5">{{singleDocData.personalInfo.[0].about}}</textarea>
+													</div>
+												</div>
+											</div>
+											<div
+												class="submit-section submit-btn-bottom w-100 d-flex align-items-right">
+												<input type="submit" value="Save Changes"
+													class=" btn-primary submit-btn mt-3">
+											</div>
+
+										</div>
+									</div>
+
+								</div>
+							</form>
+
+
+							{{!-- clinic_info --}}
+							<div class="card">
+								<div class="card-body">
+									<h4 class="card-title">Clinic Info</h4>
+									<form action="/chamberinsert/{{singleDocData.personalInfo.[0].DocNurID}}"
+										method="POST">
+										<div class="row form-row">
+											<div class="col-md-6">
+												<div class="form-group">
+													<label>Clinic Name</label>
+													<input required type="text" name="institutionName"
+														class="form-control">
+												</div>
+											</div>
+											<div class="col-md-6">
+												<div class="form-group">
+													<label>Clinic Address</label>
+													<input required type="text" name="location" class="form-control">
+												</div>
+											</div>
+											<div class="col-md-4">
+												<div class="form-group">
+													<label>Day</label>
+													<select name="day" name="day" required id="" class="form-control">
+														<option value="">Choose One</option>
+														<option value="Saturday">Saturday</option>
+														<option value="Sunday">Sunday</option>
+														<option value="Monday">Monday</option>
+														<option value="Tuesday">Tuesday</option>
+														<option value="Wednesday">Wednesday</option>
+														<option value="Thursday">Thursday</option>
+														<option value="Friday">Friday</option>
+													</select>
+												</div>
+											</div>
+											<div class="col-md-4">
+												<div class="form-group">
+													<label>Start Time</label>
+													<input required name="start_time" type="time" class="form-control">
+												</div>
+											</div>
+											<div class="col-md-4">
+												<div class="form-group">
+													<label>Start Time</label>
+													<input required type="time" name="end_time" class="form-control">
+												</div>
+											</div>
+											<div class="submit-section submit-btn-bottom d-flex align-items-right">
+												<button class="btn-primary submit-btn  mt-4">Add</button>
+												{{!-- <input type="submit" value="Save Changes"
+													class=" btn-primary submit-btn mt-3"> --}}
+											</div>
+										</div>
+									</form>
+
+									{{!-- update form --}}
+									<hr>
+									<form action="/chamberupdate/{{singleDocData.personalInfo.[0].DocNurID}}"
+										method="POST">
+										{{#each singleDocData.chamberData }}
+										<div class="row form-row border p-3 my-1">
+											<div class="col-md-6">
+												<div class="form-group">
+													<input type="hidden" name="data_id[]" value="{{this.ID}}">
+													<label>Clinic Name</label>
+													<input required type="text" value="{{this.InstitutionName}}"
+														name="institutionName[]" class="form-control">
+												</div>
+											</div>
+											<div class="col-md-6">
+												<div class="form-group">
+													<label>Clinic Address</label>
+													<input required type="text" value="{{this.Location}}"
+														name="location[]" class="form-control">
+												</div>
+											</div>
+											<div class="col-md-4">
+												<div class="form-group">
+													<label>Day</label>
+													<select name="day" value="{{this.Day}}" name="day[]" required id=""
+														class="form-control">
+														<option value="{{this.Day}}">{{this.Day}}</option>
+														<option value="Saturday">Saturday</option>
+														<option value="Sunday">Sunday</option>
+														<option value="Monday">Monday</option>
+														<option value="Tuesday">Tuesday</option>
+														<option value="Wednesday">Wednesday</option>
+														<option value="Thursday">Thursday</option>
+														<option value="Friday">Friday</option>
+													</select>
+												</div>
+											</div>
+											<div class="col-md-4">
+												<div class="form-group">
+													<label>Start Time</label>
+													<input required type="time" value="{{this.Start_time}}"
+														name="start_time[]" class="form-control">
+												</div>
+											</div>
+											<div class="col-md-4">
+												<div class="form-group">
+													<label>Start Time</label>
+													<input required type="time" value="{{this.End_time}}"
+														name="end_time[]" class="form-control">
+												</div>
+											</div>
+
+										</div>
+										{{/each}}
+										<div class="submit-section submit-btn-bottom d-flex align-items-right">
+											<button class="btn-primary submit-btn ">Update Chamber</button>
+											{{!-- <input type="submit" value="Save Changes"
+												class=" btn-primary submit-btn mt-3"> --}}
+										</div>
+									</form>
+								</div>
+							</div>
+
+
+
+							{{!-- pricing --}}
+							<div class="card p-4">
+								<div class="card-body">
+									<h4 class="card-title">Pricing</h4>
+									<div class="row form-row education-cont">
+										<form action="/updatefees/{{singleDocData.personalInfo.[0].DocNurID}}"
+											method="POST">
+											<div class="col-12 col-md-10 col-lg-11">
+												<div class="row form-row">
+													<div class="col-12 col-md-6 col-lg-5">
+														<input type="hidden" name="data_id[]" value="{{this.ID}}">
+														<div class="form-group">
+															<label>Home Fees</label>
+															<input type="number" placeholder="Eg:500"
+																value="{{singleDocData.feesData.[0].Home}}"
+																name="homeFees" required class="form-control">
+														</div>
+													</div>
+													<div class="col-12 col-md-6 col-lg-5">
+														<div class="form-group">
+															<label>Online Fees</label>
+															<input type="number" placeholder="Eg:250"
+																value="{{singleDocData.feesData.[0].Online}}"
+																name="onlineFees" required class="form-control">
+														</div>
+													</div>
+													<div class="col-md-6 col-12 col-lg-2">
+														<div
+															class="submit-section submit-btn-bottom w-100 d-flex align-items-right">
+															<button class="btn-primary submit-btn w-100">Update
+																Pricing</button>
+														</div>
+													</div>
+												</div>
+											</div>
+										</form>
+									</div>
+								</div>
+							</div>
+
+							{{!-- Education --}}
+							<div class="card">
+								<div class="card-body">
+									<h4 class="card-title">Education</h4>
+									<div class="eduInfo-mother">
+										<div class="education-info">
+											<div class="row form-row education-cont">
+												<div class="col-12 col-md-10 col-lg-11">
+													{{!-- single-eduinfo --}}
+													<div class="row form-row education-cont">
+														<div class="col-12 col-md-10 col-lg-11">
+															<div class="row form-row">
+																<div class="col-12 col-md-6 col-lg-3">
+																	<input type="hidden" name="data_id[]"
+																		value="{{this.ID}}">
+																	<div class="form-group">
+																		<label>Degree</label>
+																		<input type="text" id="degree"
+																			value="{{this.Degree}}" name="degree[]"
+																			required class="form-control">
+																	</div>
+																</div>
+																<div class="col-12 col-md-6 col-lg-3">
+																	<div class="form-group">
+																		<label>College/Institute</label>
+																		<input type="text" id="institute_name"
+																			value="{{this.InstitutionName}}"
+																			name="institutionName[]" required
+																			class="form-control">
+																	</div>
+																</div>
+																<div class="col-12 col-md-6 col-lg-2">
+																	<div class="form-group">
+																		<label>Year of Joining</label>
+																		<input type="date" id="start_date"
+																			value="{{this.Start_date}}" required
+																			name="start_date[]" class="form-control">
+																	</div>
+																</div>
+																<div class="col-12 col-md-6 col-lg-2">
+																	<div class="form-group">
+																		<label>Year of Completion</label>
+																		<input type="date" id="end_date"
+																			value="{{this.End_date}}" required
+																			name="end_date[]" class="form-control">
+																	</div>
+																</div>
+																<div class="col-md-6 col-12 col-lg-2">
+																	<div
+																		class="submit-section submit-btn-bottom w-100 d-flex align-items-right">
+																		<button
+																			class="btn-primary submit-btn w-100 eduform">Add</button>
+																		{{!-- <input type="submit" value="Save Changes"
+																			class=" btn-primary submit-btn mt-3"> --}}
+																	</div>
+																</div>
+															</div>
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+										<hr>
+										<form method="POST"
+											action="/educationupdate/{{singleDocData.personalInfo.[0].DocNurID}}">
+											<div class="education-info">
+												<div class="row form-row education-cont border py-3">
+													<div class="col-12 col-md-10 col-lg-11">
+														{{#each singleDocData.educationInfo}}
+														{{!-- single-eduinfo --}}
+														<div class="row form-row education-cont">
+															<div class="col-12 col-md-10 col-lg-11">
+																<div class="row form-row">
+																	<div class="col-12 col-md-6 col-lg-3">
+																		<input type="hidden" name="data_id[]"
+																			value="{{this.ID}}">
+																		<div class="form-group">
+																			<label>Degree</label>
+																			<input type="text" id="degree"
+																				value="{{this.Degree}}" name="degree[]"
+																				required class="form-control">
+																		</div>
+																	</div>
+																	<div class="col-12 col-md-6 col-lg-3">
+																		<div class="form-group">
+																			<label>College/Institute</label>
+																			<input type="text" id="institute_name"
+																				value="{{this.InstitutionName}}"
+																				name="institutionName[]" required
+																				class="form-control">
+																		</div>
+																	</div>
+																	<div class="col-12 col-md-6 col-lg-3">
+																		<div class="form-group">
+																			<label>Year of Joining</label>
+																			<input type="date"
+																				value="{{this.Start_date}}" required
+																				name="start_date[]"
+																				class="form-control">
+																		</div>
+																	</div>
+																	<div class="col-12 col-md-6 col-lg-3">
+																		<div class="form-group">
+																			<label>Year of Completion</label>
+																			<input type="date" value="{{this.End_date}}"
+																				required name="end_date[]"
+																				class="form-control">
+																		</div>
+																	</div>
+																</div>
+															</div>
+															<div class="col-12 col-md-2 col-lg-1 "><label
+																	class="d-md-block d-sm-none d-none">&nbsp;</label><a
+																	href="/deleteEducation/{{this.ID}}/{{this.DocNurID}}"
+																	class="btn btn-danger "><i
+																		class="far fa-trash-alt"></i></a></div>
+														</div>
+														{{/each}}
+													</div>
+												</div>
+												<div
+													class="submit-section submit-btn-bottom w-100 d-flex align-items-right">
+													<input type="submit" value="Update Education"
+														class=" btn-primary submit-btn ">
+												</div>
+											</div>
+										</form>
+									</div>
+									{{!--
+									<div class="add-more">
+										<a href="javascript:void(0);" class="add-education"><i
+												class="fa fa-plus-circle"></i> Add More</a>
+									</div> --}}
+								</div>
+							</div>
+
+
+							<div class="card">
+								<div class="card-body">
+									<h4 class="card-title">Experience</h4>
+									<div class="experience-info">
+										<div class="row form-row experience-cont">
+											<div class="col-12 col-md-10 col-lg-11">
+												<form method="POST"
+													action="/experienceinsert/{{singleDocData.personalInfo.[0].DocNurID}}">
+													<div class="row form-row">
+														<div class="col-12 col-md-6 col-lg-3">
+															<div class="form-group">
+																<label>Hospital Name</label>
+																<input type="text" id="hospitalName"
+																	name="institutionName" class="form-control">
+															</div>
+														</div>
+														<div class="col-12 col-md-6 col-lg-3">
+															<div class="form-group">
+																<label>Designation</label>
+																<input type="text" id="designation" name="designation"
+																	class="form-control">
+															</div>
+														</div>
+														<div class="col-12 col-md-6 col-lg-3">
+															<div class="form-group">
+																<label>From</label>
+																<input type="date" id="start_date_exp" name="start_date"
+																	class="form-control">
+															</div>
+														</div>
+														<div class="col-12 col-md-6 col-lg-3">
+															<div class="form-group">
+																<label>To</label>
+																<input type="date" id="end_date_exp" name="end_date"
+																	class="form-control">
+															</div>
+														</div>
+													</div>
+													<div
+														class="submit-section submit-btn-bottom w-100 d-flex align-items-right">
+														<button class="btn-primary submit-btn  expForm">Add
+															Experience</button>
+														{{!-- <input type="submit" value="Save Changes"
+															class=" btn-primary submit-btn "> --}}
+													</div>
+												</form>
+
+												{{!-- update data --}}
+												<hr>
+												<form method="POST"
+													action="/experienceupdate/{{singleDocData.personalInfo.[0].DocNurID}}"
+													class=" p-3  border">
+													{{#each singleDocData.experienceInfo}}
+													<div class="row form-row">
+														<div class="col-12 col-md-6 col-lg-3">
+															<div class="form-group">
+																<label>Hospital Name</label>
+																<input type="hidden" name="data_id[]"
+																	value="{{this.ID}}">
+																<input type="text" value="{{this.InstitutionName}}"
+																	id="hospitalName" name="institutionName[]"
+																	class="form-control">
+															</div>
+														</div>
+														<div class="col-12 col-md-6 col-lg-3">
+															<div class="form-group">
+																<label>Designation</label>
+																<input type="text" value="{{this.Designation}}"
+																	id="designation" name="designation[]"
+																	class="form-control">
+															</div>
+														</div>
+														<div class="col-12 col-md-6 col-lg-3">
+															<div class="form-group">
+																<label>From</label>
+																<input type="date" value="{{this.Start_date}}"
+																	id="start_date_exp" name="start_date[]"
+																	class="form-control">
+															</div>
+														</div>
+														<div class="col-12 col-md-6 col-lg-3">
+															<div class="form-group">
+																<label>To</label>
+																<input type="date" value="{{this.End_date}}"
+																	id="end_date_exp" name="end_date[]"
+																	class="form-control">
+															</div>
+														</div>
+													</div>
+
+													{{/each}}
+													<div
+														class="submit-section submit-btn-bottom w-100 d-flex align-items-right">
+														<button class="btn-primary submit-btn  expForm"
+															type="submit">Uddate Experience</button>
+														{{!-- <input type="submit" value="Save Changes"
+															class=" btn-primary submit-btn mt-3"> --}}
+													</div>
+												</form>
+
+											</div>
+										</div>
+									</div>
+									{{!-- <div class="add-more">
+										<a href="javascript:void(0);" class="add-experience"><i
+												class="fa fa-plus-circle"></i> Add More</a>
+									</div> --}}
+								</div>
+							</div>
+
+							{{!--
+							<div class="submit-section submit-btn-bottom">
+								<input type="submit" value="Save Changes" class=" btn-primary submit-btn">
+							</div> --}}
+
+
+						</div>
+					</div>
+				</div>
+				<div id="tablepagination" class="dataTables_wrapper"></div>
+			</div>
+		</div>
+
+	</div>
+</div>
+
+
+<div class="modal fade contentmodal" id="doctorlist" tabindex="-1" aria-hidden="true">
+	<div class="modal-dialog modal-dialog-centered">
+		<div class="modal-content doctor-profile">
+			<div class="modal-header justify-content-center border-bottom-0">
+				<h4 class="modal-title">Doctor Details</h4>
+				<button type="button" class="close-btn pos-top" data-bs-dismiss="modal" aria-label="Close"><i
+						class="feather-x-circle"></i></button>
+			</div>
+			<div class="modal-body doctor-profile-modal-body">
+
+
+			</div>
+		</div>
+	</div>
+</div>
+
+
+<div class="modal fade contentmodal" id="editModal" tabindex="-1" aria-hidden="true">
+	<div class="modal-dialog modal-dialog-centered">
+		<div class="modal-content doctor-profile">
+			<div class="modal-header">
+				<h3 class="mb-0">Edit Doctor</h3>
+				<button type="button" class="close-btn" data-bs-dismiss="modal" aria-label="Close"><i
+						class="feather-x-circle"></i></button>
+			</div>
+			<div class="modal-body">
+				<form action="doctor-list.html">
+					<div class="add-wrap">
+						<div class="form-group form-focus">
+							<input type="text" class="form-control floating" value="Dr. Rayan miller">
+							<label class="focus-label">Doctor Name <span class="text-danger">*</span></label>
+						</div>
+						<label class="mb-1">Doctor Image</label>
+						<div class="change-photo-btn">
+							<div><i class="feather-upload"></i>
+								<p>Upload File</p>
+							</div>
+							<input type="file" class="upload">
+							<span class="file-upload-text"></span>
+						</div>
+						<p class="file-name text-success">Successfully Product image.jpg uploaded <a href="#"
+								class="text-danger"><i class="feather-x"></i></a></p>
+						<div class="form-group">
+							<select class="select">
+								<option>Select Speciality</option>
+								<option>Dentist</option>
+								<option selected>Neurology</option>
+							</select>
+						</div>
+						<div class="form-group form-focus">
+							<input type="text" class="form-control floating" value="$330.00">
+							<label class="focus-label">Consultation Fees <span class="text-danger">*</span></label>
+						</div>
+						<div class="form-group form-focus">
+							<input type="text" class="form-control floating" value="Newyork, USA">
+							<label class="focus-label">Location <span class="text-danger">*</span></label>
+						</div>
+						<div class="form-group form-focus">
+							<input type="text" class="form-control floating" value="+1 5454 2154 4545">
+							<label class="focus-label">Phone <span class="text-danger">*</span></label>
+						</div>
+						<div class="submit-section">
+							<button type="submit" class="btn btn-primary btn-save">Save Changes</button>
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+<div class="modal fade contentmodal" id="deleteModal" tabindex="-1" aria-hidden="true">
+	<div class="modal-dialog modal-dialog-centered">
+		<div class="modal-content doctor-profile">
+			<div class="modal-header border-bottom-0 justify-content-end">
+				<button type="button" class="close-btn" data-bs-dismiss="modal" aria-label="Close"><i
+						class="feather-x-circle"></i></button>
+			</div>
+			<div class="modal-body">
+				<div class="delete-wrap text-center">
+					<form action="doctor-list.html">
+						<div class="del-icon"><i class="feather-x-circle"></i></div>
+						<h2>Sure you Want to delete</h2>
+						<p>“Doctor”</p>
+						<div class="submit-section">
+							<button type="submit" class="btn btn-success me-2">Yes</button>
+							<a href="#" class="btn btn-danger" data-bs-dismiss="modal">No</a>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+</div>
+<script src="/assets/js/doctorprofile.js"></script>
+
+
+{{>footer}}
+
+<script>
+	const myForm = document.getElementById("myForm")
+	const userPhoto = document.getElementById("userPhoto")
+	const userName = document.getElementById("userName")
+	const FirstName = document.getElementById("FirstName")
+	const LastName = document.getElementById("LastName")
+	const PhoneNumber = document.getElementById("PhoneNumber")
+	const Gender = document.getElementById("Gender")
+	const NID = document.getElementById("NID")
+	const DateOfBirth = document.getElementById("DateOfBirth")
+	const RegistrationNo = document.getElementById("RegistrationNo")
+	const BloodGroup = document.getElementById("BloodGroup")
+	const Address = document.getElementById("Address")
+	const Password = document.getElementById("Password");
+	const About = document.getElementById("about");
+	const successmessage = document.getElementById("successmessage")
+
+	myForm.addEventListener("submit", e => {
+
+		e.preventDefault();
+		const formData = new FormData();
+		formData.append("Photo", userPhoto.files[0]);
+		formData.append("userName", userName.value);
+		formData.append("FirstName", FirstName.value);
+		formData.append("LastName", LastName.value);
+		formData.append("PhoneNumber", PhoneNumber.value);
+		formData.append("Gender", Gender.value);
+		formData.append("NID", NID.value);
+		formData.append("DateOfBirth", DateOfBirth.value);
+		formData.append("RegistrationNo", RegistrationNo.value);
+		formData.append("BloodGroup", BloodGroup.value);
+		formData.append("Address", Address.value);
+		formData.append("Password", Password.value);
+		formData.append("about", About.value);
+		// Display the values
+		for (var value of formData.values()) {
+			console.log(value);
+		}
+		let href = window.location.href;
+		// let href = "https://www.facebook.com/david"; // Current window url; 
+		// Creating URL object
+		let url = new URL(href);
+		let str = url.pathname.substring(1)
+		var n = str.lastIndexOf('/');
+		var result = str.substring(n + 1);
+		console.log(result);
+		fetch(`http://192.168.0.121:9010/api/docinfoupdate/${result}`, {
+			method: 'PUT',
+			body: formData
+		}).catch(console.error)
+		successmessage.innerText = 'Updated Successfully';
+		successmessage.classList.add("alert-success")
+		window.location.origin;
+
+	});
+
+</script>
+<script>
+
+	$(".eduform").click(() => {
+
+		var degree = $("#degree").val();
+		var institutionName = $("#institute_name").val();
+		var start_date = $("#start_date").val();
+		var end_date = $("#end_date").val();
+		let href = window.location.href;
+		// let href = "https://www.facebook.com/david"; // Current window url; 
+		// Creating URL object
+		let url = new URL(href);
+		let str = url.pathname.substring(1)
+		var n = str.lastIndexOf('/');
+		var result = str.substring(n + 1);
+		$.post(`http://192.168.0.121:9010/api/educationinsert/${result}`, {
+			institutionName: institutionName,
+			degree: degree,
+			start_date: start_date,
+			end_date: end_date
+		}, function (response) {
+			console.log(response)
+		}
+		)
+	});
+
+	//auto hide
+	$(document).ready(function () {
+		// alert auto hide-------------------------------------
+		$(".alert").delay(4000).slideUp(200, function () {
+			$(this).alert('close');
+		});
+	});
+
+</script>

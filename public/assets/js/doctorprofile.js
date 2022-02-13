@@ -21,7 +21,7 @@ function appendInModal(data){
                         <div class="doc-info">
                             <div class="docs-id"> #${data.docnurid}</div>
                             <h3>Dr. ${data.doctorname}</h3>
-                            <p>${data.department}</p>
+                            <p>${data.departmentid}</p>
                         </div>
                     </div>
                     <div class="media-body">
@@ -36,7 +36,7 @@ function appendInModal(data){
                         <div class="col-sm-4">
                             <div class="mem-info">
                                 <h6>Member Since</h6>
-                                <p>Nov 21, 2022</p>
+                                <p>${data.createddate}</p>
                             </div>
                         </div>
                         <div class="col-sm-4">
@@ -49,7 +49,7 @@ function appendInModal(data){
                             <div class="mem-info">
                                 <h6>Consultation Fees</h6>
                                 <p>Tk. ${data.feehome} / Home</p>
-                                <p>Tk. ${data.feeonline} / Home</p>
+                                <p>Tk. ${data.feeonline} / Onlne</p>
                             </div>
                         </div>
                     </div>
@@ -66,7 +66,7 @@ function appendInModal(data){
                         <div class="col-sm-4">
                             <div class="mem-info">
                                 <h6>Date of Birth</h6>
-                                <p>21, Dec 2022</p>
+                                <p>${data.dateofbirth}</p>
                             </div>
                         </div>
                         <div class="col-sm-4">
@@ -96,7 +96,7 @@ function appendInModal(data){
                     <p>Total Income Earned : <span>$4,544,784</span></p>
                     </div>
                     <div class="submit-section">
-                    <a data-bs-dismiss="modal" data-bs-toggle="modal" href="#editModal"
+                    <a href="/admin/profile-settings-doctor/${data.docnurid}"
                         class="btn btn-primary me-2">Edit</a>
                     <a data-bs-dismiss="modal" data-bs-toggle="modal" href="#deleteModal"
                         class="btn btn-secondary">Delete Account</a>
