@@ -553,6 +553,19 @@ router.post("/admin/labedit",async(req,res)=>{
     }
 })
 
+// addtest(list also according to id)
+router.get('/admin/addtest/:id',(req,res)=>{
+    const id =  req.params.id;
+    fetch(`${process.env.ROOT_URL}/api/getallservicelistbyhospitalid/${id}`)
+    .then(res => res.json())
+    .then(testlist =>{
+        // const appointmentPareseData = JSON.stringify(appointment)
+        res.render("admin/testlist",{testlist})
+    
+    });
+  
+});
+
 // ================================Blog Start=========================================================
 // Blog-list
 router.get('/admin/blog-list',(req,res)=>{

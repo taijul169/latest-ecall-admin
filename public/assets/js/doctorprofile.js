@@ -78,7 +78,7 @@ function appendInModal(data){
                         <div class="col-sm-4">
                             <div class="mem-info">
                                 <h6>Phone Number</h6>
-                                <p>${data.phone}</p>
+                                <p>${data.phonenumber}</p>
                             </div>
                         </div>
                         <div class="col-sm-4">
@@ -98,9 +98,8 @@ function appendInModal(data){
                     <div class="submit-section">
                     <a href="/admin/profile-settings-doctor/${data.docnurid}"
                         class="btn btn-primary me-2">Edit</a>
-                    <a data-bs-dismiss="modal" data-bs-toggle="modal" href="#deleteModal"
-                        class="btn btn-secondary">Delete Account</a>
-                    </div>
+                    <a href="#" class="btn btn-secondary">Export Data</a>
+                    
    `
 
    parent.append(div)
