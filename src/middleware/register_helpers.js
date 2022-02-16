@@ -16,7 +16,7 @@ hbs.registerHelper("statusDisplayAdmin",(status)=>{
       class="fa fa-check-circle" aria-hidden="true"></i>Verified</a>`)
     }
     else{
-      return new handlebars.SafeString(`<a  class="btn btn-warning px-5"><i class="fa fa-times" aria-hidden="true"></i>Blocked</a>`)
+      return new handlebars.SafeString(`<a  class="btn btn-warning px-5"><i class="fa fa-ban" aria-hidden="true"></i>Blocked</a>`)
     }
   
   
@@ -80,7 +80,7 @@ hbs.registerHelper("makeFavUnFav",(allFavList,docId,PatientID)=>{
 
 })
 // department name display
-hbs.registerHelper("departmentNameDisplay",(allDepartment,singleDepartmentID)=>{
+hbs.registerHelper("departmentNameDisplay",(allDepartment, singleDepartmentID)=>{
     for(var i = 0;i<allDepartment.length;i++){
 
       if(allDepartment[i].Dept_ID == singleDepartmentID){
@@ -92,6 +92,36 @@ hbs.registerHelper("departmentNameDisplay",(allDepartment,singleDepartmentID)=>{
       }
     }
 
+    // return new handlebars.SafeString(a)
+})
+
+
+// department name display
+hbs.registerHelper("activedeactiveControl",(id, status)=>{
+
+      
+      if(status == false){
+          
+         // return allDepartment[i].name;
+         return new handlebars.SafeString(` <label class="toggle-switch" for="status1 ${id}">
+         <input type="checkbox" onclick="activeDeactive('${id}',true)" class="toggle-switch-input"
+             id="status1 ${id}" >
+         <span class="toggle-switch-label">
+             <span class="toggle-switch-indicator"></span>
+         </span>
+     </label>`)
+      }
+      else{
+           // return allDepartment[i].name;
+         return new handlebars.SafeString(` <label class="toggle-switch" for="status1 ${id}">
+         <input type="checkbox" onclick="activeDeactive('${id}', false)" class="toggle-switch-input"
+             id="status1 ${id}" checked>
+         <span class="toggle-switch-label">
+             <span class="toggle-switch-indicator"></span>
+         </span>
+     </label>`)
+      }
+  
     // return new handlebars.SafeString(a)
 })
 

@@ -6016,3 +6016,13 @@ div#data-table_paginate span a {
     color: #fff;
     font-size: 22px;
 }
+
+div#tablepagination span a {
+    border: 1px solid;
+    padding: 5px;
+    margin: 2px;
+}
+
+h5.doc-department img {
+    display: none;
+}

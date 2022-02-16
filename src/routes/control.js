@@ -88,8 +88,20 @@ router.get('/admin', auth, async(req,res,next)=>{
 
 
 // upcomming appointments
-router.get('/admin/upcoming-appointments', auth,(req,res,next)=>{
-    res.render("admin/upcoming-appointments")
+router.get('/admin/appointments', auth,(req,res,next)=>{
+    fetch(`${process.env.ROOT_URL}/api/getappointment`)
+    .then(res => res.json())
+    .then(appoinmentsData =>{
+        fetch(`${process.env.ROOT_URL}/api/getdepartment`)
+            .then(res => res.json())
+            .then(Departmentlist =>{
+
+                res.render("admin/appointments",{appoinmentsData,Departmentlist})
+            });
+       
+       
+    });
+
 });
 // SPECIALITIES
 router.get('/admin/specialities',(req,res)=>{
@@ -555,6 +567,7 @@ router.post("/admin/labedit",async(req,res)=>{
 
 // addtest(list also according to id)
 router.get('/admin/addtest/:id',(req,res)=>{
+
     const id =  req.params.id;
     fetch(`${process.env.ROOT_URL}/api/getallservicelistbyhospitalid/${id}`)
     .then(res => res.json())
@@ -564,6 +577,30 @@ router.get('/admin/addtest/:id',(req,res)=>{
     
     });
   
+});
+
+
+// edittest(list also according to id)
+router.post('/admin/edittest/:id',async(req,res)=>{
+    const id =  req.params.id;
+    const {TestName,Category,Price,} = req.body;
+    const response =  await (fetch(`${process.env.ROOT_URL}/api/singletestupdate/${id}`, 
+   { 
+       method: 'PUT', 
+       body: JSON.stringify({TestName,Category,Price}),
+       headers: { 'Content-Type': 'application/json' }
+   }));
+
+   //console.log(response.status)
+   if(response.status === 200){
+       req.session.message={
+           type:'alert-success',
+           intro:'Created!',
+           message:'Updated successfully.'
+       }
+       res.redirect(`back`)
+   }
+
 });
 
 // ================================Blog Start=========================================================

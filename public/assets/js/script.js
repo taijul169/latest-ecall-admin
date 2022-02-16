@@ -1041,4 +1041,12 @@ Version      : 1.3
 	});
 	}
 
+
+
+		// alert auto hide-------------------------------------
+		$(".alert").delay(4000).slideUp(200, function () {
+			$(this).alert('close');
+		});
+	
+
 })(jQuery);

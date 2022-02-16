@@ -123,7 +123,7 @@ function appendInModal(data){
 		formData.append("Longitude", Longitude.value);
         formData.append("Photo", userPhoto.files[0]);
         //console.log("length of about:", PhoneNumber.value.length)
-
+        
 		// Display the values
 		for (var value of formData.values()) {
 			console.log("value:",value);
@@ -194,7 +194,7 @@ function HospitalInsert(){
         formData.append("LONGITUDE", addLongitude.value);
         formData.append("Photo", addPhoto.files[0]);
         //console.log("length of about:", PhoneNumber.value.length)
-
+       
 		// Display the values
 		for (var value of formData.values()) {
 			console.log("value:",value);

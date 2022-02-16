@@ -1,14 +1,11 @@
 {{>header}}
 
 {{>nav}}
-{{#if message}}
+ {{#if message}}
     <div class="alert {{message.type}}" role="alert">
         {{message.message}}
     </div>
 {{/if}}
-<div class="alert {{message.type}}" id="successmessage" role="alert">
-	{{message.message}}
-</div>
 <div class="page-wrapper" style="min-height: 349px;">
     <div class="content container-fluid">
 
@@ -215,7 +212,7 @@
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content doctor-profile">
                 <div class="modal-header">
-                    <h3 class="mb-0">Edit Lab</h3>
+                    <h3 class="mb-0">Edit Test</h3>
                     <button type="button" class="close-btn" data-bs-dismiss="modal" aria-label="Close"><i
                             class="feather-x-circle"></i></button>
                 </div>

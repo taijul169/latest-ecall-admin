@@ -169,18 +169,21 @@
                                                     <td>AB+</td>
                                                     <td>$300.00</td>
                                                     <td>
-                                                        <label class="toggle-switch" for="status1 {{@index}}">
-                                                            <input type="checkbox" class="toggle-switch-input"
-                                                                id="status1 {{@index}}">
-                                                            <span class="toggle-switch-label">
-                                                                <span class="toggle-switch-indicator"></span>
-                                                            </span>
-                                                        </label>
+
+                                                        {{activedeactiveControl this.PatientID this.IsActive}}
+                                                       
                                                     </td>
                                                 </tr>
                                                {{/each}}
                                             </tbody>
                                         </table>
+                                        <script>
+                                            function activeDeactive(patientid,status){
+                                              fetch(`http://192.168.0.121:9010/api/admin/patientverifystatusupdate/${patientid}/${status}`, {
+                                                    method: 'PUT',
+                                                }).catch(console.error)
+                                            }
+                                        </script>
                                     </div>
                                 </div>
                                 <div class="row">

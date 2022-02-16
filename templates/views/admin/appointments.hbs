@@ -1,0 +1,152 @@
+{{>header}}
+     {{!-- sidenav --}}
+      {{>nav}}
+
+
+        <div class="page-wrapper">
+            <div class="content container-fluid">
+
+                <div class="page-header">
+                    <div class="row align-items-center">
+                        <div class="col">
+                            <ul class="list-links">
+                                <li class="active"><a href="upcoming-appointments.html">Upcoming Appointments
+                                        <span>(48)</span></a></li>
+                                <li><a href="past-appointments.html">Past Appointments <span>(98)</span></a></li>
+                            </ul>
+                        </div>
+                        <div class="col-auto">
+                            <div class="bookingrange btn btn-white btn-sm">
+                                <div class="cal-ico">
+                                    <i class="feather-calendar mr-1"></i>
+                                    <span>Select Date</span>
+                                </div>
+                                <div class="ico">
+                                    <i class="fas fa-chevron-left"></i>
+                                    <i class="fas fa-chevron-right"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="card">
+                            <div class="card-header">
+                                <div class="row align-items-center">
+                                    <div class="col">
+                                        <h5 class="card-title"> All Appointments<span class="badge badge-pill badge-danger pl-4">{{appoinmentsData.length}}</span></h5>
+                                    </div>
+                                    <div class="col-auto d-flex">
+                                        <form action="upcoming-appointments.html">
+                                            <div class="multipleSelection">
+                                                <div class="selectBox">
+                                                    <p class="mb-0"><i class="feather-filter me-1"></i> Filter</p>
+                                                    <span class="down-icon"><i class="feather-chevron-down"></i></span>
+                                                </div>
+                                                <div id="checkBoxes">
+                                                    <div class="form-custom">
+                                                        <input type="text" class="form-control bg-grey"
+                                                            placeholder="Search by Patient">
+                                                        <i class="fas fa-search"></i>
+                                                    </div>
+                                                    <div class="form-custom">
+                                                        <input type="text" class="form-control bg-grey"
+                                                            placeholder="Search by Doctor">
+                                                        <i class="fas fa-search"></i>
+                                                    </div>
+                                                    <p class="lab-title">Consultation Type</p>
+                                                    <label class="custom_check w-100">
+                                                        <input type="checkbox" name="year">
+                                                        <span class="checkmark"></span> Video Call
+                                                    </label>
+                                                    <label class="custom_check w-100">
+                                                        <input type="checkbox" name="year">
+                                                        <span class="checkmark"></span> Audio Call
+                                                    </label>
+                                                    <label class="custom_check w-100">
+                                                        <input type="checkbox" name="year">
+                                                        <span class="checkmark"></span> Chat
+                                                    </label>
+                                                    <button type="submit" class="btn w-100 btn-primary">Apply</button>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card-body p-0">
+                                <div class="table-responsive">
+                                    <table class="datatable table table-borderless hover-table" id="data-tables">
+                                        <thead class="thead-light">
+                                            <tr>
+                                                <th>ID</th>
+                                                <th>Patient</th>
+                                                <th>Doctor</th>
+                                                <th>Created At</th>
+                                                <th>Consultation type</th>
+                                                <th>Date & Time</th>
+                                                <th>Amount</th>
+                                                <th>current Status</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+
+                                            {{#each appoinmentsData}}
+                                            <tr>
+                                                <td>#{{this.appointmentID}}</td>
+                                                <td>
+                                                    <h2 class="table-avatar">
+                                                        <a href="/admin/profile-settings-patient/{{this.PatientID}}"><img class="avatar avatar-img"
+                                                                src="{{this.PatientPhoto}}"
+                                                                onerror="this.onerror=null; this.src='/assets/img/default.jpg'"
+                                                                alt="User Image"></a>
+                                                        <a href="/admin/profile-settings-patient/{{this.PatientID}}"><span class="user-name">{{this.FirstName}} {{this.LastName}}</span> <span class="text-muted">Male, 40 Years
+                                                                Old</span></a>
+                                                    </h2>
+                                                </td>
+                                                <td>
+                                                    <h2 class="table-avatar">
+                                                        <a class="avatar-pos" href="/admin/profile-settings-doctor/{{this.DocNurID}}"><img
+                                                                class="avatar avatar-img"
+                                                                src="{{this.PatientPhoto}}"
+                                                                onerror="this.onerror=null; this.src='/assets/img/default.jpg'"
+                                                                alt="User Image"></a>
+                                                        <a href="/admin/profile-settings-doctor/{{this.DocNurID}}" class="user-name"><span
+                                                                class="text-muted">{{this.DoctorName}}</span> <span
+                                                                class="tab-subtext">{{departmentNameDisplay  ../Departmentlist this.department}}</span></a>
+                                                    </h2>
+                                                </td>
+                                                <td><span class="disease-name">{{this.Created_At}}</span></td>
+                                                <td class="status">
+                                                    <span>Scheduled Appointment</span>
+                                                    <a class="d-block text-primary mt-2">
+                                                        <span class="d-flex align-items-center"><i
+                                                                class="feather-video me-2"></i> {{this.ServiceType}}</span>
+                                                    </a>
+                                                </td>
+                                                <td><span class="user-name">{{this.BookingDate}} </span><span
+                                                        class="d-block">{{this.BookingTime}}</span></td>
+                                                <td>{{this.TotalAmount}}</td>
+                                                <td><span>{{statusDisplay this.CurrentStatus}}</span></td>
+                                                
+                                            </tr>
+                                          {{/each}}
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                       <div id="tablepagination" class="dataTables_wrapper"></div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+
+
+  {{>footer}}
