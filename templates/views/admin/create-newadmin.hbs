@@ -4,9 +4,12 @@
 
 <div class="page-wrapper" style="min-height: 349px;">
     <div class="content container-fluid content-wrap">
-       <form>
+       <form id="myForm">
         <div class="row">
             <div class="col-md-8">
+                	<div class="alert {{message.type}}" id="successmessage" role="alert">
+                        {{message.message}}
+                    </div>
                 <div class="setting-info profile-info">
                     <h4>Personal Information</h4>
                     <label class="avatar profile-cover-avatar" for="avatar_upload">
@@ -30,38 +33,46 @@
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-group form-focus">
-                                <input type="text" class="form-control floating" value="{{userData.[0].FirstName}}">
+                                <select class="form-control floating" id="UserRole">
+                                  <option value="1">Primary</option>
+                                  <option value="2">Secondary</option>
+                                </select>
+                                <label class="focus-label">Role</label>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group form-focus">
+                                <input type="text" class="form-control floating" id="FirstName" >
                                 <label class="focus-label">First Name</label>
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-group form-focus">
-                                <input type="text" class="form-control floating" value="{{userData.[0].LastName}}">
+                                <input type="text" class="form-control floating"  id="LastName">
                                 <label class="focus-label">Last Name</label>
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-group form-focus">
-                                <input type="text" class="form-control floating" value="{{userData.[0].FirstName}}">
+                                <input type="text" class="form-control floating" >
                                 <label class="focus-label">Age</label>
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-group form-focus">
-                                <input type="text" class="form-control floating" value="{{userData.[0].DateOfBirth}}">
+                                <input type="text" class="form-control floating" id="DateOfBirth" >
                                 <label class="focus-label">Date of Birth</label>
                             </div>
                         </div>
                          <div class="col-md-6">
                             <div class="form-group form-focus">
-                                <input type="text" class="form-control floating" value="{{userData.[0].Phone}}">
+                                <input type="text" class="form-control floating" id="Phone">
                                 <label class="focus-label">Phone</label>
                             </div>
                         </div>
                          <div class="col-md-6">
                            <div class="form-group form-focus">
                                 <select class="form-control floating" id="Gender">
-                                   <option value="{{userData.[0].Gender}}">{{userData.[0].Gender}}</option> 
                                   <option value="Male">Male</option>
                                   <option value="Female">Female</option>
                                 </select>
@@ -70,7 +81,7 @@
                         </div>
                           <div class="col-md-4">
                             <div class="form-group form-focus">
-                                  <input type="password" id="Password" class="form-control floating"  value="{{userData.[0].Password}}">
+                                  <input type="password" id="Password" class="form-control floating"  >
                                  <label class="focus-label">Password</label>
                             </div>
                         </div>
@@ -83,46 +94,10 @@
                     <hr class="mt-0">
                     <h5 class="mb-1">Address &amp; Location</h5>
                     <p class="mb-3">Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
-                    <div class="row">
-                        <div class="col-md-6">
-                            <div class="form-group form-focus">
-                                <input type="text" class="form-control floating">
-                                <label class="focus-label">Address / Street name</label>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="form-group form-focus">
-                                <input type="text" class="form-control floating">
-                                <label class="focus-label">Country</label>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="form-group form-focus">
-                                <input type="text" class="form-control floating">
-                                <label class="focus-label">City</label>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="form-group form-focus">
-                                <input type="text" class="form-control floating">
-                                <label class="focus-label">State</label>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="form-group form-focus">
-                                <input type="text" class="form-control floating">
-                                <label class="focus-label">Pincode</label>
-                            </div>
-                        </div>
-                    </div>
+                  
                 </div>
             </div>
-            <div class="col-md-4">
-              <div class="submit-sec">
-                  <a href="/admin/createadmin" class=" btn-primary submit-btn mt-3">Create New Admin</a>
-                    
-                </div>
-            </div>
+            
         </div>
         <div class="row mt-auto">
             <div class="col-md-12">
@@ -135,6 +110,54 @@
        </form>
     </div>
 </div>
+	<script>
+		const myForm  =  document.getElementById("myForm")
+		const avatar_upload  =  document.getElementById("avatar_upload")
+		const UserRole  =  document.getElementById("UserRole")
+		const FirstName  =  document.getElementById("FirstName")
+		const LastName  =  document.getElementById("LastName")
+		const Phone  =  document.getElementById("Phone")
+		const Gender  =  document.getElementById("Gender")
+		const DateOfBirth  =  document.getElementById("DateOfBirth")
+		const Password  =  document.getElementById("Password");
+		const successmessage  =  document.getElementById("successmessage")
 
+		myForm.addEventListener("submit", e =>{
+             window.alert("working")
+			e.preventDefault();
+			const formData =  new FormData();
+			formData.append("Photo",avatar_upload.files[0]);
+			formData.append("UserRole", UserRole.value);
+			formData.append("FirstName", FirstName.value);
+			formData.append("LastName", LastName.value);
+			formData.append("Phone", Phone.value);
+			formData.append("DateOfBirth", DateOfBirth.value);
+			formData.append("Gender", Gender.value);
+			formData.append("Password", Password.value);
+			
+			// Display the values
+				for (var value of formData.values()) {
+				   console.log(value);
+				}
+				let href = window.location.href; 
+				// let href = "https://www.facebook.com/david"; // Current window url; 
+				// Creating URL object
+				let url = new URL(href);
+				let str = url.pathname.substring(1)
+				var n = str.lastIndexOf('/');
+                var result = str.substring(n + 1);
+				console.log(result); 
+			fetch(`http://192.168.0.121:9010/api/admincreate`,{
+				method:'POST',
+				body:formData
+			}).catch(console.error)
+             successmessage.innerText = 'Inserted Successfully';
+			 successmessage.classList.add("alert-success")
+			 window.location.origin;
+			
+		});
+		 
+	
+	</script>
 
 {{>footer}}

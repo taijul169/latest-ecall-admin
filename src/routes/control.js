@@ -114,6 +114,7 @@ router.get('/admin/specialities',(req,res)=>{
     });
 
 });
+
 // doctorlist
 router.get('/admin/doctor-list',(req,res)=>{
     fetch(`${process.env.ROOT_URL}/api/getdocnurserlist`)
@@ -511,10 +512,26 @@ router.get('/admin/patient-list',(req,res)=>{
     fetch(`${process.env.ROOT_URL}/api/getpatientlist`)
         .then(res => res.json())
         .then(Patientlist =>{
+            console.log(Patientlist)
             // const appointmentPareseData = JSON.stringify(appointment)
             res.render("admin/patient-list",{Patientlist})
         });
 });
+
+
+// single-patient-profile
+router.get('/admin/patient-profile/:id',(req,res)=>{
+    const patientID =  req.params.id
+    fetch(`${process.env.ROOT_URL}/api/singlepatient/${patientID}`)
+        .then(res => res.json())
+        .then(singlepatientData =>{
+            console.log(singlepatientData)
+            // const appointmentPareseData = JSON.stringify(appointment)
+            res.render("admin/patient-profile",{singlepatientData})
+        });
+});
+
+
 // ratings
 router.get('/admin/ratings',(req,res)=>{
     res.render("admin/ratings")
@@ -524,9 +541,20 @@ router.get('/admin/transaction',(req,res)=>{
     res.render("admin/transaction")
 });
 // profile-admin
-router.get('/admin/admin-profile',(req,res)=>{
-    res.render("admin/profile")
+router.get('/admin/admin-profile',auth,(req,res)=>{
+   
+    console.log("userdata:",req.userData[0])
+    res.render("admin/profile",{userData:req.userData})
 });
+
+// profile-admin
+router.get('/admin/createadmin',auth,(req,res)=>{
+
+    
+    res.render("admin/create-newadmin",{userData:req.userData})
+});
+
+
 
 
 //================================= Hospital Start====================================================

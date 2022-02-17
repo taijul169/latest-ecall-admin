@@ -25,9 +25,10 @@ const auth = async (req, res, next) =>{
         }
         else{
             for(var i=0;i< singleDocData.userData.length;i++){
-                singleDocData.userData[i].Photo = `${root_url}${singleDocData.userData[i].PhotoPath}`
+                singleDocData.userData[i].PhotoPath = `${root_url}${singleDocData.userData[i].PhotoPath}`  
             }
             req.userData = singleDocData.userData;
+    
             return next()
 
         }

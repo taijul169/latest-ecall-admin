@@ -1,0 +1,243 @@
+{{>header}}
+
+{{>nav}}
+
+<div class="page-wrapper" style="min-height: 349px;">
+    <div class="content container-fluid content-wrap">
+       <form id="myForm">
+        <div class="row">
+            <div class="col-md-12">
+                	<div class="alert {{message.type}}" id="successmessage" role="alert">
+                                {{message.message}}
+						    </div>
+                <div class="setting-info profile-info">
+                    <h4>Personal Information</h4>
+                    <label class="avatar profile-cover-avatar" for="avatar_upload">
+                        <img class="avatar-img" src="{{singlepatientData.Photo}}"  id="output" alt="Profile Image" onerror="this.onerror=null; this.src='/assets/img/default.jpg'">
+                        <input type="file" id="avatar_upload" name="Photo" onchange="loadFile(event)">
+                        <span class="avatar-edit">
+                            <i class="feather-edit"></i>
+                        </span>
+
+                        <script>
+                        var loadFile = function(event) {
+                            var reader = new FileReader();
+                            reader.onload = function(){
+                            var output = document.getElementById('output');
+                            output.src = reader.result;
+                            };
+                            reader.readAsDataURL(event.target.files[0]);
+                        };
+                     </script>
+                   </label>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group form-focus">
+                                <input type="text" value="{{singlepatientData.FirstName}}" class="form-control floating" id="FirstName">
+                                <label class="focus-label">First Name</label>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group form-focus">
+                                <input type="text" value="{{singlepatientData.LastName}}" class="form-control floating" id="LastName">
+                                <label class="focus-label">Last Name</label>
+                            </div>
+                        </div>
+                         <div class="col-md-6">
+                            <div class="form-group form-focus">
+                                <input type="text" value="{{singlepatientData.userName}}" class="form-control floating" id="userName">
+                                <label class="focus-label">UserName</label>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group form-focus">
+                                <input type="text" value="{{singlepatientData.Age}}" class="form-control floating">
+                                <label class="focus-label">Age</label>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group form-focus">
+                                <input type="text" value="{{singlepatientData.DateOfBirth}}" id="DateOfBirth" class="form-control floating">
+                                <label class="focus-label">Date of Birth</label>
+                            </div>
+                        </div>
+                         <div class="col-md-4">
+                            <div class="form-group form-focus">
+                                <input type="text" id="Height" value="{{singlepatientData.Height}}" class="form-control floating">
+                                <label class="focus-label">Height</label>
+                            </div>
+                        </div>
+                         <div class="col-md-4">
+                            <div class="form-group form-focus">
+                                <input type="text" id="Weight" value="{{singlepatientData.Weight}}" class="form-control floating">
+                                <label class="focus-label">Weight</label>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                             <div class="form-group form-focus">
+                                <select class="form-control floating" id="Gender">
+                                   <option value="{{singlepatientData.Gender}}">{{singlepatientData.Gender}}</option> 
+                                  <option value="Male">Male</option>
+                                  <option value="Female">Female</option>
+                                </select>
+                                 <label class="focus-label">Gender</label>
+                            </div>
+                        </div>
+
+                         <div class="col-md-4">
+                            <div class="form-group form-focus">
+                               <input type="text"  id="NID"value="{{singlepatientData.NID}}" class="form-control floating">
+                                <label class="focus-label">NID</label>
+                            </div>
+                        </div>
+                         <div class="col-md-4">
+                            <div class="form-group form-focus">
+                               <input name="PhoneNumber" id="PhoneNumber" value="{{singlepatientData.PhoneNumber}}" type="text" class="form-control floating">
+                                <label class="focus-label">Phone</label>
+                            </div>
+                        </div>
+                         <div class="col-md-4">
+                            <div class="form-group form-focus">
+                                <select class="form-control floating" id="BloodGroup">
+                                 <option value="{{singlepatientData.BloodGroup}}">{{singlepatientData.BloodGroup}}</option> 
+                                  <option value="A+">Male</option>
+                                  <option value="A-">A-</option>
+                                  <option value="AB-">AB-</option>
+                                  <option value="AB+-">AB+-</option>
+                                  <option value="B+">B+<+/option>
+                                  <option value="B-">B-</option>
+                                  <option value="O+">O+</option>
+                                  <option value="O-">O-</option>
+                                </select>
+                                 <label class="focus-label">Blood Group</label>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group form-focus">
+                                  <input type="password" id="Password" class="form-control floating"  value="{{singlepatientData.Password}}">
+                                 <label class="focus-label">Password</label>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <textarea class="form-control" placeholder="About me" rows="4" id="Address">
+                                    {{singlepatientData.Address}}
+                                </textarea>
+                            </div>
+                        </div>
+                    </div>
+                    <hr class="mt-0">
+                    <h5 class="mb-1">Address &amp; Location</h5>
+                    <p class="mb-3">{{singlepatientData.Address}}.</p>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group form-focus">
+                                <input type="text" class="form-control floating" value="{{singlepatientData.Address}}">
+                                <label class="focus-label">Address / Street name</label>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group form-focus">
+                                <input type="text" class="form-control floating">
+                                <label class="focus-label">Country</label>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group form-focus">
+                                <input type="text" class="form-control floating">
+                                <label class="focus-label">City</label>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group form-focus">
+                                <input type="text" class="form-control floating">
+                                <label class="focus-label">State</label>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group form-focus">
+                                <input type="text" class="form-control floating">
+                                <label class="focus-label">Pincode</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row mt-auto">
+            <div class="col-md-12">
+                <div class="submit-sec">
+                    <input type="submit" value="Save Changes" class=" btn-primary submit-btn mt-3">
+                    <button class="btn btn-secondary">Cancel</button>
+                </div>
+            </div>
+        </div>
+      </form>
+    </div>
+</div>
+
+
+	<script>
+		const myForm  =  document.getElementById("myForm")
+		const avatar_upload  =  document.getElementById("avatar_upload")
+		const userName  =  document.getElementById("userName")
+		const FirstName  =  document.getElementById("FirstName")
+		const LastName  =  document.getElementById("LastName")
+		const PhoneNumber  =  document.getElementById("PhoneNumber")
+		const Gender  =  document.getElementById("Gender")
+		const NID  =  document.getElementById("NID")
+        const Weight  =  document.getElementById("Weight")
+		const Height  =  document.getElementById("Height")
+		
+		
+		const DateOfBirth  =  document.getElementById("DateOfBirth")
+		const BloodGroup  =  document.getElementById("BloodGroup")
+		const Address  =  document.getElementById("Address")
+		const Password  =  document.getElementById("Password");
+		const successmessage  =  document.getElementById("successmessage")
+
+		myForm.addEventListener("submit", e =>{
+             window.alert("working")
+			e.preventDefault();
+			const formData =  new FormData();
+			formData.append("Photo",avatar_upload.files[0]);
+			formData.append("userName", userName.value);
+			formData.append("FirstName", FirstName.value);
+			formData.append("LastName", LastName.value);
+			formData.append("PhoneNumber", PhoneNumber.value);
+			formData.append("Gender", Gender.value);
+			formData.append("NID", NID.value);
+			formData.append("Height", Height.value);
+			formData.append("Weight", Weight.value);
+			formData.append("DateOfBirth", DateOfBirth.value);
+			formData.append("BloodGroup", BloodGroup.value);
+			formData.append("Address", Address.value);
+			formData.append("Password", Password.value);
+			
+			// Display the values
+				for (var value of formData.values()) {
+				   console.log(value);
+				}
+				let href = window.location.href; 
+				// let href = "https://www.facebook.com/david"; // Current window url; 
+				// Creating URL object
+				let url = new URL(href);
+				let str = url.pathname.substring(1)
+				var n = str.lastIndexOf('/');
+                var result = str.substring(n + 1);
+				console.log(result); 
+			fetch(`http://192.168.0.121:9010/api/patientupdateinfo/${result}`,{
+				method:'PUT',
+				body:formData
+			}).catch(console.error)
+             successmessage.innerText = 'Updated Successfully';
+			 successmessage.classList.add("alert-success")
+			 window.location.origin;
+			
+		});
+		 
+	
+	</script>
+
+
+{{>footer}}
