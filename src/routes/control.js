@@ -608,6 +608,8 @@ router.get('/admin/addtest/:id',(req,res)=>{
 });
 
 
+
+
 // edittest(list also according to id)
 router.post('/admin/edittest/:id',async(req,res)=>{
     const id =  req.params.id;
@@ -630,6 +632,72 @@ router.post('/admin/edittest/:id',async(req,res)=>{
    }
 
 });
+
+
+
+
+
+// addmedicne
+router.post('/admin/addmedicine',async(req,res)=>{
+
+     const {Name,GenericName,ManufacName,Unit} = req.body;
+     const response =  await (fetch(`${process.env.ROOT_URL}/api/medicineinsert`, 
+     { 
+         method: 'POST', 
+         body: JSON.stringify({Name,GenericName,ManufacName,Unit}),
+         headers: { 'Content-Type': 'application/json' }
+     }));
+
+        //console.log(response.status)
+   if(response.status === 200){
+    req.session.message={
+        type:'alert-success',
+        intro:'Created!',
+        message:'Inserted successfully.'
+    }
+    res.redirect(`back`)
+}
+  
+});
+
+
+
+// update medicine
+router.post('/admin/updatemedicine', async(req,res)=>{
+
+    const {Name,GenericName,ManufacName,Unit,MedicineID} = req.body;
+    const response =  await (fetch(`${process.env.ROOT_URL}/api/medicineupdate/${MedicineID}`, 
+    { 
+        method: 'PUT', 
+        body: JSON.stringify({Name,GenericName,ManufacName,Unit}),
+        headers: { 'Content-Type': 'application/json' }
+    }));
+
+       //console.log(response.status)
+  if(response.status === 200){
+   req.session.message={
+       type:'alert-success',
+       intro:'Created!',
+       message:'Inserted successfully.'
+   }
+   res.redirect(`back`)
+}
+ 
+});
+// getmedicne
+router.get('/admin/addmedicine',(req,res)=>{
+
+    fetch(`${process.env.ROOT_URL}/api/getmedicinelist`)
+    .then(res => res.json())
+    .then(medicinelist =>{
+        // const appointmentPareseData = JSON.stringify(appointment)
+        res.render("admin/medicine",{medicinelist})
+    
+    });
+  
+});
+
+
 
 // ================================Blog Start=========================================================
 // Blog-list
